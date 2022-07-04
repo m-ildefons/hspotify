@@ -1,0 +1,146 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           hspotify
+version:        0.1.0.0
+description:    Haskell Spotify API Bindings.
+homepage:       https://github.com/m-ildefons/hspotify#readme
+bug-reports:    https://github.com/m-ildefons/hspotify/issues
+author:         Moritz Röhrich
+maintainer:     moritz.rohrich@suse.com
+copyright:      2022 SUSE LLC.
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/m-ildefons/hspotify
+
+library
+  exposed-modules:
+      Utils.HSpotify
+      Utils.HSpotify.Album
+      Utils.HSpotify.Artist
+      Utils.HSpotify.Authorization
+      Utils.HSpotify.Internal
+      Utils.HSpotify.Search
+      Utils.HSpotify.Track
+      Utils.HSpotify.User
+  other-modules:
+      Paths_hspotify
+  hs-source-dirs:
+      src
+  default-extensions:
+      DeriveAnyClass
+      DeriveGeneric
+      NamedFieldPuns
+      OverloadedStrings
+      PatternSynonyms
+      RecordWildCards
+      ScopedTypeVariables
+      StrictData
+      TemplateHaskell
+      TupleSections
+  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -optP-Wno-nonportable-include-path -flate-dmd-anal
+  build-depends:
+      aeson
+    , async
+    , base >=4.7 && <5
+    , bytestring
+    , data-default
+    , http-client
+    , http-client-tls
+    , http-conduit
+    , http-types
+    , optparse-applicative
+    , prettyprinter
+    , process
+    , random
+    , text
+    , wai
+    , warp
+  default-language: Haskell2010
+
+executable hspotify
+  main-is: Main.hs
+  other-modules:
+      Paths_hspotify
+  hs-source-dirs:
+      app
+  default-extensions:
+      DeriveAnyClass
+      DeriveGeneric
+      NamedFieldPuns
+      OverloadedStrings
+      PatternSynonyms
+      RecordWildCards
+      ScopedTypeVariables
+      StrictData
+      TemplateHaskell
+      TupleSections
+  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -optP-Wno-nonportable-include-path -flate-dmd-anal -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , async
+    , base >=4.7 && <5
+    , bytestring
+    , data-default
+    , hspotify
+    , http-client
+    , http-client-tls
+    , http-conduit
+    , http-types
+    , optparse-applicative
+    , prettyprinter
+    , process
+    , random
+    , text
+    , wai
+    , warp
+  default-language: Haskell2010
+
+test-suite hspotify-tests
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_hspotify
+  hs-source-dirs:
+      test
+  default-extensions:
+      DeriveAnyClass
+      DeriveGeneric
+      NamedFieldPuns
+      OverloadedStrings
+      PatternSynonyms
+      RecordWildCards
+      ScopedTypeVariables
+      StrictData
+      TemplateHaskell
+      TupleSections
+  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -optP-Wno-nonportable-include-path -flate-dmd-anal -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , async
+    , base >=4.7 && <5
+    , bytestring
+    , data-default
+    , hspotify
+    , http-client
+    , http-client-tls
+    , http-conduit
+    , http-types
+    , optparse-applicative
+    , prettyprinter
+    , process
+    , random
+    , text
+    , wai
+    , warp
+  default-language: Haskell2010
