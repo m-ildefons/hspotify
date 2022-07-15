@@ -21,12 +21,14 @@ data Album =
     }
   deriving (Generic, Show, Eq)
 
+
 instance FromJSON Album where
   parseJSON =
     withObject "Album" $
       \v -> Album
               <$> v .: "name"
               <*> v .: "id"
+
 
 instance Pretty Album where
   pretty album =
@@ -36,6 +38,10 @@ instance Pretty Album where
             "id: " <> pretty (albumId album)
           ]
       )
+
+
+instance Uri Album where
+  uri (Album album_id _) = "spotify:album:" <> album_id
 
 
 -- | Retrieve the user object corresponding to the currently authenticated user.

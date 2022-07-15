@@ -29,10 +29,15 @@ library
       Utils.HSpotify.Album
       Utils.HSpotify.Artist
       Utils.HSpotify.Authorization
+      Utils.HSpotify.Current
       Utils.HSpotify.Internal
+      Utils.HSpotify.Pause
+      Utils.HSpotify.Play
       Utils.HSpotify.Search
+      Utils.HSpotify.Skip
       Utils.HSpotify.Track
       Utils.HSpotify.User
+      Utils.HSpotify.Utils
   other-modules:
       Paths_hspotify
   hs-source-dirs:
@@ -110,6 +115,8 @@ test-suite hspotify-tests
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Utils.HSpotify.ArtistSpec
+      Utils.HSpotify.TrackSpec
       Paths_hspotify
   hs-source-dirs:
       test
@@ -126,11 +133,13 @@ test-suite hspotify-tests
       TupleSections
   ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -optP-Wno-nonportable-include-path -flate-dmd-anal -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aeson
+      HUnit
+    , aeson
     , async
     , base >=4.7 && <5
     , bytestring
     , data-default
+    , hspec
     , hspotify
     , http-client
     , http-client-tls

@@ -18,17 +18,20 @@ data Artist =
   Artist
     { artistId :: Text,
       artistName :: Text,
+      artistPopularity :: Int,
       genres :: [Text]
     }
   deriving (Generic, Show, Eq)
+
 
 instance FromJSON Artist where
   parseJSON =
     withObject "Artist" $
       \v -> Artist
-              <$> v .: "name"
-              <*> v .: "id"
-              <*> v .: "genres"
+              <$> v .: "id"
+              <*> v .: "name"
+              <*> v .:? "popularity" .!= 0
+              <*> v .:? "genres" .!= []
 
 instance Pretty Artist where
   pretty artist =
@@ -36,6 +39,7 @@ instance Pretty Artist where
       ( vsep
           [ "Artist \"" <> pretty (artistName artist) <> "\"",
             "id: " <> pretty (artistId artist),
+            "popularity: " <> pretty (artistPopularity artist),
             "genres: " <> pretty (genres artist)
           ]
       )

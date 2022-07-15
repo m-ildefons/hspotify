@@ -24,12 +24,14 @@ data SearchResult =
     }
   deriving (Generic, Show, Eq)
 
+
 instance FromJSON SearchResult where
   parseJSON =
     withObject "SearchResult" $
       \v -> SearchResult
               <$> v .:? "tracks" .!= def
               <*> v .:? "albums" .!= def
+
 
 instance Pretty SearchResult where
   pretty searchresult =
@@ -40,6 +42,7 @@ instance Pretty SearchResult where
           ]
       )
 
+
 data SearchResultTracks =
   SearchResultTracks
     { hrefTracks :: Text,
@@ -47,6 +50,7 @@ data SearchResultTracks =
       itemsTracks :: [Track]
     }
   deriving (Generic, Show, Eq)
+
 
 instance FromJSON SearchResultTracks where
   parseJSON =
@@ -56,8 +60,10 @@ instance FromJSON SearchResultTracks where
               <*> v .: "total"
               <*> v .: "items"
 
+
 instance Default SearchResultTracks where
   def = SearchResultTracks "null" 0 []
+
 
 instance Pretty SearchResultTracks where
   pretty searchresulttracks =
@@ -70,6 +76,7 @@ instance Pretty SearchResultTracks where
           ]
       )
 
+
 data SearchResultAlbums =
   SearchResultAlbums
     { hrefAlbums :: Text,
@@ -77,6 +84,7 @@ data SearchResultAlbums =
       itemsAlbums :: [Album]
     }
   deriving (Generic, Show, Eq)
+
 
 instance FromJSON SearchResultAlbums where
   parseJSON =
@@ -86,8 +94,10 @@ instance FromJSON SearchResultAlbums where
               <*> v .: "total"
               <*> v .: "items"
 
+
 instance Default SearchResultAlbums where
   def = SearchResultAlbums "null" 0 []
+
 
 instance Pretty SearchResultAlbums where
   pretty searchresultalbums =

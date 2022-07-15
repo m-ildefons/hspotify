@@ -29,6 +29,23 @@ import Network.Wai.Handler.Warp
     Settings (..),
   )
 
+
+data AuthorizationScope
+  = Streaming
+  | UserReadRecentlyPlayed
+  | UserReadPlaybackState
+  | UserReadPrivate
+  | UserReadEmail
+  deriving (Show, Eq)
+
+scopeToText :: AuthorizationScope -> Text
+scopeToText Streaming = "streaming"
+scopeToText UserReadRecentlyPlayed = "user-read-recently-played"
+scopeToText UserReadPlaybackState = "user-read-playback-state"
+scopeToText UserReadPrivate = "user-read-private"
+scopeToText UserReadEmail = "user-read-email"
+
+
 redirectUri :: Text
 redirectUri = "http://localhost:7979"
 
@@ -119,7 +136,7 @@ makeRequest :: IO ()
 makeRequest = do
   client_id <- getClientID
 
-  let scope = "user-read-private user-read-email"
+  let scope = "streaming user-read-recently-played user-read-playback-state user-read-private user-read-email"
 
   code <- openBrowser (authUrl client_id scope "0123456789ABCDEF")
   threadDelay 1000000
